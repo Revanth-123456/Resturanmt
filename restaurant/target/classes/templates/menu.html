@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Menu Items</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+        body {
+            background: url('https://t4.ftcdn.net/jpg/01/16/06/25/240_F_116062575_hhMvbwor6NLEeVOWShfxEiT3WCYDfxrD.jpg') no-repeat center center/cover;
+            color: #000000;
+            transition: background 0.3s ease-in-out;
+        }
+        .navbar {
+            display: flex;
+            align-items: center;
+            padding: 20px 50px;
+            border-bottom: 2px solid #D50000;
+            background-color: #ffffff;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #D50000;
+            cursor: pointer;
+        }
+        #t1{
+            text-size-adjust: bold;
+        }
+        nav a {
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: 700;
+            margin: 0 15px;
+            color: #D50000;
+            transition: color 0.3s ease-in-out;
+        }
+        nav a:hover, nav .active {
+            color: #000000;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            background: whitesmoke;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        #item {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        .b1{
+            background-color: #d56a00;
+            color: white;
+            padding: 6px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease-in-out;
+        }
+        .b1:hover{
+            background-color: #310101;
+            color: white;
+        }
+        h1 {
+            color: #D50000;
+            margin-bottom: 20px;
+        }
+        ul {
+            list-style: none;
+            text-align: left;
+        }
+        li {
+            margin: 10px 0;
+        }
+        a {
+            color: #D50000;
+            text-decoration: none;
+        }
+        a:hover {
+            color: #000000;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            text-align: left;
+            margin: 10px 0 5px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #D50000;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease-in-out;
+        }
+        button:hover {
+            background-color: #310101;
+        }
+        footer {
+            background-color: wheat;
+            color: #D50000;
+            padding: 10px 0;
+            text-align: center;
+            margin-top: 30px;
+            border-radius: 5%;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Menu Items for <span th:text="${restaurant.name}"></span></h1>
+
+        <div th:if="${menuItems.size() > 0}">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Item Name</th>
+                        <th>Description</th>
+						<th>Category</th>
+                        <th>Price</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="item : ${menuItems}">
+                        <td th:text="${item.name}"></td>
+                        <td th:text="${item.description}"></td>
+						<td th:text="${item.category}"></td>
+                        <td th:text="${item.price}"></td>
+                        <td>
+                            <a th:href="@{/view/menu/{itemId}/edit(itemId=${item.itemId})}" >Edit</a>
+                            <a th:href="@{/view/menu/{itemId}(itemId=${item.itemId})}" >Delete</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div th:unless="${menuItems.size() > 0}">
+            <p>No menu items found for this restaurant.</p>
+        </div>
+        <br/>
+        <a th:href="@{/view/addMenu/{restaurantId}(restaurantId=${restaurant.restaurantId})}">Add New Menu Item</a>
+        <br/>
+        <a th:href="@{/view/allRestaurants}">Back to Restaurants</a>
+    </div>
+    <footer>
+        <div class="footer-info">
+            <p>© 2025 TastyTreatExpress. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

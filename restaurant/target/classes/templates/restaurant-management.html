@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Management - TastyTreatExpress</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-image: url('https://as1.ftcdn.net/jpg/01/14/36/84/1000_F_114368484_dC1FQApMpuXNjiGlB77zebkHjPgpBi1e.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #000000;
+            transition: background 0.3s ease-in-out;
+        }
+
+        /* Hover effect on body */
+        body:hover {
+            filter: brightness(95%);
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            padding: 20px 50px;
+            border-bottom: 2px solid #D50000;
+            background-color: #ffffff;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #D50000;
+            cursor: pointer;
+        }
+
+        nav a {
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: 700;
+            margin: 0 15px;
+            color: #D50000;
+            transition: color 0.3s ease-in-out;
+        }
+
+        nav a:hover, nav .active {
+            color: #000000;
+        }
+
+        .container {
+            width: 60%;
+            margin: 50px auto;
+            padding: 30px;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .container:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: scale(1.02);
+        }
+
+        h1 {
+            color: #D50000;
+            margin-bottom: 20px;
+        }
+
+        .option {
+            display: block;
+            background: #D50000;
+            padding: 15px;
+            margin: 10px auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            width: 220px;
+            text-align: center;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .option:hover {
+            background-color: #B20000;
+            transform: scale(1.05);
+        }
+
+        footer {
+            background-color: #ffffff;
+            color: #D50000;
+            padding: 10px 0;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .footer-info {
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 80%;
+            }
+
+            .navbar {
+                padding: 15px;
+            }
+
+            nav a {
+                font-size: 16px;
+                margin: 0 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+<header class="navbar">
+    <div class="logo" th:text="${companyName}">TastyTreatExpress</div>
+    <nav>
+        <a th:href="@{/view/restaurant}">Home</a>
+        <a th:href="@{/shop}">Shop</a>
+        <a th:href="@{/dishes}">Dishes</a>
+        <a th:href="@{/cart}">Cart</a>
+        <a th:href="@{/menu}">Menu</a>
+        <a th:href="@{/restaurant}" class="active" style="color: #000000;">Restaurant</a>
+    </nav>
+</header>
+
+<main class="container">
+    <h1>Restaurant Management System</h1>
+    <a th:href="@{/view/addRestaurant}" class="option">Add Restaurant</a>
+    <a th:href="@{/view/allRestaurants}" class="option">All Restaurants</a>
+    <!-- <a th:href="@{/view/restaurants/{restaurantId}/menu(add='true')}" class="option">Add Menu</a>
+    <a th:href="@{/view/menu/{itemId}/edit}" class="option">Update Menu</a> -->
+</main>
+
+<footer>
+    <div class="footer-info">
+        <p>&copy; 2025 TastyTreatExpress. All rights reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>

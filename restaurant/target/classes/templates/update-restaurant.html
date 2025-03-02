@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Restaurant - TastyTreatExpress</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-image: url('https://plus.unsplash.com/premium_photo-1686090448301-4c453ee74718?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #000000;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            padding: 20px 50px;
+            border-bottom: 2px solid #D50000;
+            background-color: #ffffff;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #D50000;
+            cursor: pointer;
+        }
+
+        nav a {
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: 700;
+            margin: 0 15px;
+            color: #D50000;
+            transition: color 0.3s ease-in-out;
+        }
+
+        nav a:hover, nav .active {
+            color: #000000;
+        }
+
+        .container {
+            width: 50%;
+            margin: 50px auto;
+            padding: 30px;
+            background: whitesmoke;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h2 {
+            color: #D50000;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 16px;
+            font-weight: 600;
+            text-align: left;
+            margin-top: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s ease-in-out;
+        }
+
+        input:focus {
+            border-color: #D50000;
+            outline: none;
+        }
+
+        button {
+            background-color: #D50000;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #B20000;
+            transform: scale(1.05);
+        }
+
+        footer {
+            background-color: #ffffff;
+            color: #D50000;
+            padding: 10px 0;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .footer-info {
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 80%;
+            }
+
+            .navbar {
+                padding: 15px;
+            }
+
+            nav a {
+                font-size: 16px;
+                margin: 0 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+<header class="navbar">
+    <div class="logo" th:text="${companyName}">TastyTreatExpress</div>
+    <nav>
+        <a th:href="@{/home}">Home</a>
+        <a th:href="@{/shop}">Shop</a>
+        <a th:href="@{/dishes}">Dishes</a>
+        <a th:href="@{/cart}">Cart</a>
+        <a th:href="@{/menu}">Menu</a>
+        <a th:href="@{/restaurant}">Restaurant</a>
+    </nav>
+</header>
+
+<main class="container">
+    <h2>Update Restaurant</h2>
+    <form th:action="@{/view/restaurants/{id}/update(id=${restaurant.restaurantId})}" method="post" th:object="${restaurant}">
+        <label>Restaurant ID:</label>
+        <input type="number" name="restaurantId" th:value="${restaurant.restaurantId}" readonly>
+        <label>Restaurant Name:</label>
+        <input type="text" th:field="*{name}" required>
+        <button type="submit">Update Restaurant</button>
+    </form>
+</main>
+
+<footer>
+    <div class="footer-info">
+        <p>&copy; 2025 TastyTreatExpress. All rights reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>
